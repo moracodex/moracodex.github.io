@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoraCodeX | التوثيق الرسمي وحفظ الهوية البرمجية</title>
+    <!-- استدعاء مكتبة الأيقونات العالمية لتشغيل أشكال السوشيال ميديا -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --bg-color: #040408;
+            --card-bg: #090915;
+            --primary-color: #00ffcc;
+            --secondary-color: #0077ff;
+            --warning-color: #ff3366;
+            --whatsapp-color: #25d366;
+            --text-color: #ffffff;
+            --text-muted: #808095;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(4, 4, 8, 0.9);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 25px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #0c0c20 0%, var(--bg-color) 75%);
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .timestamp-badge {
+            background: rgba(0, 255, 204, 0.07);
+            border: 1px solid var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .content-section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .document-box {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 850px;
+            margin: 0 auto 40px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: right;
+        }
+
+        .document-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .document-box p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        /* تنسيق شبكة أزرار قنواتك وحساباتك الحقيقية */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 30px auto 0;
+        }
+
+        .social-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-card i {
+            font-size: 35px;
+            transition: 0.3s;
+        }
+
+        /* تأثيرات الإضاءة الملونة لحساباتك الشخصية بمجرد لمسها */
+        .social-card.youtube:hover { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+        .social-card.youtube:hover i { color: #ff0000; }
+
+        .social-card.discord:hover { border-color: #5865F2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.3); }
+        .social-card.discord:hover i { color: #5865F2; }
+
+        .social-card.telegram:hover { border-color: #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.3); }
+        .social-card.telegram:hover i { color: #0088cc; }
+
+        .social-card.facebook:hover { border-color: #1877F2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.3); }
+        .social-card.facebook:hover i { color: #1877F2; }
+
+        .social-card.whatsapp:hover { border-color: var(--whatsapp-color); box-shadow: 0 0 15px rgba(37, 211, 102, 0.3); }
+        .social-card.whatsapp:hover i { color: var(--whatsapp-color); }
+
+        .social-card span {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .warning-box {
+            border-right: 5px solid var(--warning-color);
+            background: rgba(255, 51, 102, 0.03);
+        }
+
+        .warning-box h3 {
+            color: var(--warning-color);
+        }
+
+        .warning-list {
+            margin-right: 20px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .warning-list li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: #020205;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MORACODEX</div>
+        <nav>
+            <a href="#home">الرئيسية</a>
+            <a href="#vision">رؤية المطور</a>
+            <a href="#social">منظومة التواصل</a>
+            <a href="#legal">الحماية والتوثيق</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="timestamp-badge">🛡️ تم حجز وتوثيق الهوية الرقمية رسمياً: مايو 2026</div>
+        <h1>MoraCodeX <span>فكرة مستقلة محمية</span></h1>
+        <p>صفحة رسمية مخصصة لحجز العلامة البرمجية وإثبات الملكية الفكرية للمشروع التقني القادم قبل أي إطلاق علني.</p>
+    </section>
+
+    <section class="content-section" id="vision">
+        <h2 class="section-title">بيان الرؤية والأصالة</h2>
+        <div class="document-box">
+            <h3>من مجرد فكرة.. إلى كود حقيقي آمن</h3>
+            <p>أنا مبرمج ومطور مستقل، أؤمن بأن الأكواد والحلول الذكية غير التقليدية هي القادرة على إعادة تشكيل المستقبل الرقمي وحل أعقد المشاكل التقنية ببساطة وكفاءة.</p>
+            <p>قمت ببرمجة ورفع هذا الموقع خصيصاً كحجر أساس رقمي ثابت لحماية اسم مشروعي المستقبلي <strong>MoraCodeX</strong> ولتأكيد أصالته الفكرية، حيث يخضع هذا النطاق لإشرافي وتطويري الشخصي الفردي بالكامل وبناءً على رؤيتي الخاصة.</p>
+        </div>
+    </section>
+
+    <!-- روابطك الحقيقية التي أرسلتها مدمجة بالكامل هنا بترميز سليم -->
+    <section class="content-section" id="social" style="background-color: #020205;">
+        <h2 class="section-title">منظومة التواصل الرقمي</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">تابع المنصات الرسمية الخاصة بـ MoraCodeX لمراقبة البداية الفكرية للمشروع:</p>
+        
+        <div class="social-grid">
+            <!-- قناتك على اليوتيوب -->
+            <a href="https://www.youtube.com/channel/UCyVcbMvYzhMdEMuYixrkf-A" target="_blank" class="social-card youtube">
+                <i class="fab fa-youtube"></i>
+                <span>قناة اليوتيوب</span>
+            </a>
+
+            <!-- سيرفر الديسكورد الخاص بك -->
+            <a href="https://discord.com/invite/PMtYEgAGeU" target="_blank" class="social-card discord">
+                <i class="fab fa-discord"></i>
+                <span>سيرفر الديسكورد</span>
+            </a>
+
+            <!-- مجتمع التلغرام الخاص بك -->
+            <a href="https://t.me/+IuhPe7yU4IZjYzE0" target="_blank" class="social-card telegram">
+                <i class="fab fa-telegram-plane"></i>
+                <span>قناة التلغرام</span>
+            </a>
+
+            <!-- حساب الفيس بوك المحدث -->
+            <a href="https://www.facebook.com/profile.php?id=61571261430272" target="_blank" class="social-card facebook">
+                <i class="fab fa-facebook-f"></i>
+                <span>حساب الفيسبوك</span>
+            </a>
+
+            <!-- قناتك على الواتساب المضافة حديثاً -->
+            <a href="https://whatsapp.com/channel/0029VbBsCZDGufIyKOGx6T3i" target="_blank" class="social-card whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>قناة الواتساب</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="content-section" id="legal">
+        <h2 class="section-title">الإشعار القانوني والحماية الفكرية</h2>
+        
+        <div class="document-box warning-box">
+            <h3>⚠️ تحذير رسمي وإخلاء مسؤولية</h3>
+            <p>إن اسم <strong>MoraCodeX</strong>، والشعارات التابعة له، والرؤية البرمجية المذكورة في هذه المنصة هي ملكية فكرية خاصة ومسجلة رقمياً بموجب بصمة برمجية زمنية مشفرة وغير قابلة للتعديل عبر خوادم شركة GitHub العالمية.</p>
+            <p>أي محاولة لتقليد الاسم، أو استنساخ الفكرة البرمجية، أو انتحال هوية هذا المشروع في الساحة البرمجية ستواجه بالإجراءات الرقمية والقانونية الفورية لحظر وإغلاق الحسابات المنتهكة لحقوق الملكية الفكرية.</p>
+        </div>
+
+        <div class="document-box">
+            <h3>🔒 كيف يتم إثبات الأقدمية والملكية هنا؟</h3>
+            <ul class="warning-list" style="list-style-type: square;">
+                <li><strong>التوثيق الزمني الصارم:</strong> خوادم GitHub تحتفظ ببصمة رقمية مشفرة (Git Commit Timestamp) تسجل بالثانية والدقيقة تاريخ إنشاء هذا المستودع وحجز اسم MoraCodeX.</li>
+                <li><strong>حظر الادعاء الكاذب:</strong> لا يمكن لأي مدّعٍ أو مقلد لاحق أن يثبت أقدمية فكرته؛ لأن الكود المصدري هنا يحمل تاريخاً أقدم ومثبتاً عالمياً بشكل علني.</li>
+                <li><strong>الاستقلالية التامة:</strong> هذا الموقع يمثل سجلاً تاريخياً مفتوحاً للجميع للتأكد من أن صاحب الفكرة وباني كودها الأول هو المطور المستقل لمشروع MoraCodeX.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 جميع الحقوق الفكرية والبرمجية محفوظة وموثقة رقمياً لصالح المطور المستقل لـ MoraCodeX.</p>
+    </footer>
+
+</body>
+</html>
